@@ -3,7 +3,7 @@ import numpy as np
 import joblib  # FOR SAVING MY MODEL AS A BINARY FILE
 from matplotlib.colors import ListedColormap
 import os
-#import logging
+import logging
 
 plt.style.use("fivethirtyeight")
 
@@ -15,11 +15,10 @@ def prepare_data(df):
     Returns:
         tuple: it returns the tuples of dependent variables and independent variables
     """
-    print("Preparing the data by segregating the independent and dependent variables")
+    logging.info("preparingPreparing the data by segregating the independent and dependent variables")
     x = df.drop("y", axis=1)
     y = df["y"]
     return x, y
-
 
 def save_model(model, filename):
     """This saves the trained model to
@@ -27,12 +26,12 @@ def save_model(model, filename):
         model (python object): trained model to
         filename (str): path to save the trained model
     """
-    print("saving the trained model")
+    logging.info("saving the trained model")
     model_dir = "models"
     os.makedirs(model_dir, exist_ok=True)  # ONLY CREATE IF MODEL_DIR DOES NOT EXISTS
     filepath = os.path.join(model_dir, filename)  # model/filename
     joblib.dump(model, filepath)
-    print(f"saved the trained model {filepath}")
+    logging.info(f"saved the trained model {filepath}")
 
 
 
@@ -43,7 +42,7 @@ def save_plot(df, file_name, model):
     :param model: trained model
     """
     def _create_base_plot(df):
-        print("creating the base plot")
+        logging.info("creating the base plot")
         df.plot(kind="scatter", x="x1", y="x2", c="y", s=100, cmap="winter")
         plt.axhline(y=0, color="black", linestyle="--", linewidth=1)
         plt.axvline(x=0, color="black", linestyle="--", linewidth=1)
@@ -51,7 +50,7 @@ def save_plot(df, file_name, model):
         figure.set_size_inches(10, 8)
 
     def _plot_decision_regions(X, y, classifier, resolution=0.02):
-        print("plotting the decision regions")
+        logging.info("plotting the decision regions")
         colors = ("red", "blue", "lightgreen", "gray", "cyan")
         colormap = ListedColormap(colors[: len(np.unique(y))])
 
@@ -76,4 +75,4 @@ def save_plot(df, file_name, model):
     os.makedirs(plot_dir, exist_ok=True)  # ONLY CREATE IF MODEL_DIR DOES NOT EXISTS
     plotPath = os.path.join(plot_dir, file_name)  # model/filename
     plt.savefig(plotPath)
-    print(f"saving the plot at {plotPath}")
+    logging.info(f"saving the plot at {plotPath}")
