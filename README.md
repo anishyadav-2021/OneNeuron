@@ -1,9 +1,9 @@
 # OneNeuron
 OneNeuron | Perceptron
 ## Useful Link
-[git handbook](https://guides.github.com/introduction/git-handbook/)
+[git handbook] (https://guides.github.com/introduction/git-handbook/)
 ## add image files
-[and output](E:\DL\iNeuron\Practice\OneNeuron\plots\and.png)
+![and output](E:\DL\iNeuron\Practice\OneNeuron\plots\and.png)
 
 ## Add image with html format
 <img src="E:\DL\iNeuron\Practice\OneNeuron\plots\and.png" alt="AND o/p Image" width="200" height="200">
@@ -51,7 +51,7 @@ if __name__ == '__main__':
 ```
 ```bash
 git add .
-git -m "Type message"
+git commit -m "Type message"
 git push origin main
 ```
 #headings
